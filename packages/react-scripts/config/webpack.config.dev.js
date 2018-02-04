@@ -263,12 +263,12 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     // Perform type checking and linting in a separate process to speed up compilation
-    (process.env.NO_EMIT_ON_ERROR ? null : new ForkTsCheckerWebpackPlugin({
+    (process.env.NO_EMIT_ON_ERROR ? new ForkTsCheckerWebpackPlugin({
       async: false,
       watch: paths.appSrc,
       tsconfig: paths.appTsConfig,
       tslint: paths.appTsLint,
-    })),
+    }) : null),
   ].filter(Boolean),
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
